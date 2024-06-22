@@ -38,8 +38,8 @@ tqdm_notebook.pandas()
 
 
 # Charger les images
-intro_image = Image.open("Images/LFBImage.JPEG")   
-sidebar_image = Image.open("Images/LFBImage1.JPG")  
+intro_image = Image.open("Images/LFBImage.jpeg")   
+sidebar_image = Image.open("Images/LFBImage1.jpg")  
 
 #intro_image = intro_image.resize((100, 100))
 sidebar_image = sidebar_image.resize((180, 180))
