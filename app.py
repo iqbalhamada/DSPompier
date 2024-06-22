@@ -206,7 +206,7 @@ elif section == "Série temporelle":
     st.image(image_1, caption="Nombre d'appels réceptionnés", width=700)
     #st.image(, caption="", width=700)
 
-    st.image(r'Images/comparaison.jpg', caption="Comparaison modèle additif et modèle multiplicatif", width=700)
+    st.image(r'Images/Comparaison.jpg', caption="Comparaison modèle additif et modèle multiplicatif", width=700)
 
     paragraphe2 = '''Cette comparaison de modèle permet de conclure de façon claire que l'évolution du nombre d'appels correspond à un modèle
     multiplicatif. Cette information est extrêment importante à intégrer car cela signifie qu'au fur et à mesure des années, ce nombre
