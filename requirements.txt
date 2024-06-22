@@ -18,5 +18,5 @@ tensorflow==2.15.0
 tensorflow_intel==2.15.0
 tqdm==4.65.0
 xgboost==2.1.0
-matplotlib==3.7.2
-matplotlib==3.8.2
+~atplotlib==3.7.2
+~matplotlib==3.8.2
