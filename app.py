@@ -38,8 +38,8 @@ tqdm_notebook.pandas()
 
 
 # Charger les images
-intro_image = Image.open("../Images/LFBImage.JPEG")   
-sidebar_image = Image.open("../Images/LFBImage1.JPG")  
+intro_image = Image.open("/Images/LFBImage.JPEG")   
+sidebar_image = Image.open("/Images/LFBImage1.JPG")  
 
 #intro_image = intro_image.resize((100, 100))
 sidebar_image = sidebar_image.resize((180, 180))
@@ -141,7 +141,7 @@ elif section == "Description des datasets":
         st.write("- Clé primaire : IncidentNumber")
         
     if st.checkbox("_Afficher valeurs manquantes de la table **Incidents**_") :
-        st.image(r'../Images/valeurs_manquantes_df_incidents.jpg', caption="Variables à plus 10% de valeurs manquantes", width=600)
+        st.image(r'/Images/valeurs_manquantes_df_incidents.jpg', caption="Variables à plus 10% de valeurs manquantes", width=600)
 
     st.write("- Un second jeu de données (**Mobilisations**) contient les détails de chaque ressource (camion de pompiers) envoyé sur les lieux d’un incident entre 2015 et 2023.")         
 
@@ -150,7 +150,7 @@ elif section == "Description des datasets":
         st.write("- Clé primaire : ResourceMobilisationId")
         
     if st.checkbox("_Afficher valeurs manquantes de la table **Mobilisations**_") :
-        st.image(r'../Images/valeurs_manquantes_df_mobilisations.jpg', caption="Variables à plus 10% de valeurs manquantes", width=600)
+        st.image(r'/Images/valeurs_manquantes_df_mobilisations.jpg', caption="Variables à plus 10% de valeurs manquantes", width=600)
 
     st.write("")
 
@@ -159,7 +159,7 @@ elif section == "Description des datasets":
     st.write("Après les étapes de preprocessing, nous disposons d'une base de travail unique, comportant les données d'incidents et de ressources mobilisées, avec 6 ans de profondeur d'historique.")
     try:
         # Tente de lire le fichier CSV localement
-        df = pd.read_csv(r'../data/LFB_data_preprocess.csv')
+        df = pd.read_csv(r'/data/LFB_data_preprocess.csv')
 
     except FileNotFoundError:
     # Si le fichier local n'est pas trouvé, charge depuis Dropbox
@@ -200,13 +200,13 @@ elif section == "Série temporelle":
     st.markdown(paragraphe1)
 
     st.markdown("<h2 style='text-align: left; color: black;'>Nombre d'appels réceptionnés par les pompiers de Londres</h2>", unsafe_allow_html=True)
-    image_path = r"../Images/Nombredappel.jpg"
+    image_path = r"/Images/Nombredappel.jpg"
     image_1 = Image.open(image_path)
     # Afficher l'image avec Streamlit
     st.image(image_1, caption="Nombre d'appels réceptionnés", width=700)
     #st.image(, caption="", width=700)
 
-    st.image(r'../Images/comparaison.jpg', caption="Comparaison modèle additif et modèle multiplicatif", width=700)
+    st.image(r'/Images/comparaison.jpg', caption="Comparaison modèle additif et modèle multiplicatif", width=700)
 
     paragraphe2 = '''Cette comparaison de modèle permet de conclure de façon claire que l'évolution du nombre d'appels correspond à un modèle
     multiplicatif. Cette information est extrêment importante à intégrer car cela signifie qu'au fur et à mesure des années, ce nombre
@@ -221,7 +221,7 @@ elif section == "Série temporelle":
     '''
     st.markdown(paragraphe3)
 
-    st.image(r'../Images/Prevision.jpg', caption="Prédiction d'évolution des appels", width=700)
+    st.image(r'/Images/Prevision.jpg', caption="Prédiction d'évolution des appels", width=700)
 
     paragraphe4 = '''Le tracé en pointillé correspond à l'évolution moyenne prédite. La plage grisée correspond à la plage d'erreur (écart-type) potentielle.
     Aini, plus on avance dans le temps de prévision, plus de façon logique la plage d'erreur augmente (liée aux phénomènes d'incertitudes d'évènements)
@@ -413,13 +413,13 @@ elif section == "Machine Learning":
     else:
         st.write("Aucune donnée à afficher.")
 
-    model_DecisionTree_regressor = joblib.load("..\models\model_DecisionTree_regressor")
-    model_gb_regressor = joblib.load("..\models\model_gb_regressor")
-    model_Grid_CV = joblib.load("..\models\model_Grid_CV")
-    model_reg_line = joblib.load("..\models\model_reg_line")
-    model_Rf_reg = joblib.load("..\models\model_Rf_reg")  # fichier volumineux !!! 6GB
-    model_XGB_reg = joblib.load("..\models\model_XGB_reg")
-    model_KNN_reg = joblib.load("..\models\model_KNN_reg")
+    model_DecisionTree_regressor = joblib.load("/models/model_DecisionTree_regressor")
+    model_gb_regressor = joblib.load("/models/model_gb_regressor")
+    model_Grid_CV = joblib.load("/models/model_Grid_CV")
+    model_reg_line = joblib.load("/models/model_reg_line")
+    model_Rf_reg = joblib.load("/models/model_Rf_reg")  # fichier volumineux !!! 6GB
+    model_XGB_reg = joblib.load("/models/model_XGB_reg")
+    model_KNN_reg = joblib.load("/models/model_KNN_reg")
 
 
     y_pred_model_DecisionTree_regressor= model_DecisionTree_regressor.predict(X_test)
@@ -455,7 +455,7 @@ elif section == "Machine Learning":
     st.write(train_model(model_choisi))
     if model_choisi == "Decision Tree":
                 #st.image(image, caption='Arbre de décision', use_column_width=True)
-                image_path = r"../Images/Arbre_de_decision.png"
+                image_path = r"/Images/Arbre_de_decision.png"
                 image = Image.open(image_path)
                 # Afficher l'image avec Streamlit
                 st.image(image, caption='Arbre de décision', use_column_width=True)
