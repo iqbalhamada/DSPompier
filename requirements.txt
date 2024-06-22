@@ -1,13 +1,12 @@
 geopy
 joblib
 matplotlib
-numpy
-pandas
+numpy==1.21.4
+pandas==1.3.4
 pillow
 pyproj
-scikit-learn
+scikit-learn==0.24.2
 seaborn
 shap
-streamlit
-tensorflow==2.5.0  # Mise à jour vers une version prise en charge de TensorFlow
-
+streamlit==1.36.0
+tensorflow==2.4.0
