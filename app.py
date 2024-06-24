@@ -38,8 +38,8 @@ tqdm_notebook.pandas()
 
 
 # Charger les images
-intro_image = Image.open("Images/LFBImage.jpeg")   
-sidebar_image = Image.open("Images/LFBImage1.jpg")  
+intro_image = Image.open("..\Images\LFBImage.JPEG")   
+sidebar_image = Image.open("..\Images\LFBImage1.JPG")  
 
 #intro_image = intro_image.resize((100, 100))
 sidebar_image = sidebar_image.resize((180, 180))
@@ -141,7 +141,7 @@ elif section == "Description des datasets":
         st.write("- Clé primaire : IncidentNumber")
         
     if st.checkbox("_Afficher valeurs manquantes de la table **Incidents**_") :
-        st.image(r'Images/valeurs_manquantes_df_incidents.jpg', caption="Variables à plus 10% de valeurs manquantes", width=600)
+        st.image(r'..\Images\valeurs_manquantes_df_incidents.jpg', caption="Variables à plus 10% de valeurs manquantes", width=600)
 
     st.write("- Un second jeu de données (**Mobilisations**) contient les détails de chaque ressource (camion de pompiers) envoyé sur les lieux d’un incident entre 2015 et 2023.")         
 
@@ -150,7 +150,7 @@ elif section == "Description des datasets":
         st.write("- Clé primaire : ResourceMobilisationId")
         
     if st.checkbox("_Afficher valeurs manquantes de la table **Mobilisations**_") :
-        st.image(r'Images/valeurs_manquantes_df_mobilisations.jpg', caption="Variables à plus 10% de valeurs manquantes", width=600)
+        st.image(r'..\Images\valeurs_manquantes_df_mobilisations.jpg', caption="Variables à plus 10% de valeurs manquantes", width=600)
 
     st.write("")
 
@@ -159,7 +159,7 @@ elif section == "Description des datasets":
     st.write("Après les étapes de preprocessing, nous disposons d'une base de travail unique, comportant les données d'incidents et de ressources mobilisées, avec 6 ans de profondeur d'historique.")
     try:
         # Tente de lire le fichier CSV localement
-        df = pd.read_csv(r'/data/LFB_data_preprocess.csv')
+        df = pd.read_csv(r'..\data\LFB_data_preprocess.csv')
 
     except FileNotFoundError:
     # Si le fichier local n'est pas trouvé, charge depuis Dropbox
@@ -181,9 +181,63 @@ elif section == "Description des datasets":
     # Ajoutez ici votre code de visualisation de données
 # DataVizualisation
 elif section == "DataVizualisation":
-    st.title("DataVizualisation")
-    st.write("Dans cette section, nous allons visualiser les données.")
+    #st.title("DataVizualisation")
+    #st.write("Dans cette section, nous allons visualiser les données.")
     # Ajoutez ici votre code de visualisation de données
+    import streamlit as st
+    import tensorflow as tf
+    from sklearn.metrics import mean_absolute_error, mean_squared_error
+    import numpy as np
+    from PIL import Image
+
+    st.markdown("<h1 style='text-align: center; color: blue;'>Datavisualisation</h1>", unsafe_allow_html=True)
+
+    st.markdown("<h2 style='text-align: center; color: black;'>Variable cible</h2>", unsafe_allow_html=True)
+
+    st.image(r"..\Images\Distribution_variable_cible.jpg", caption="Distribution des temps d'attente (variable cible)", width=700)
+
+    st.image(r'../Images/Distribution_gamma_variable_cible.jpg', caption=" La variable cible ne suit pas une distribution Gamma malgré les apparences", width=700)
+
+    st.image(r'../Images/Distribution_variable_cible_hue.jpg', caption="Distribution des temps d'attente par type d'incident (variable cible)", width=700)
+
+
+
+    st.markdown("<h2 style='text-align: center; color: black;'>Types d'interventions</h2>", unsafe_allow_html=True)
+
+    st.image(r'../Images/Boxplot_temps_attente_type_intervention.jpg', caption="Temps d'attente par type d'intervention", width=1400)
+
+    st.image(r'../Images/Mobilisations_Description_Pie.jpg', caption="Description des différents types de mobilisation", width=1000)
+
+    st.image(r'../Images/Mobilisations_Incidents.jpg', caption="Nombre de mobilisations par incidents", width=600)
+
+
+
+    st.markdown("<h2 style='text-align: center; color: black;'>Evolution temporelle</h2>", unsafe_allow_html=True)
+
+    st.image(r'../Images/Nb_mobilisations_mensuelles_diachronique.jpg', caption="Evolution mensuelle du nombre d'appels", width=1300)
+
+    st.image(r'../Images/Distribution_nb_appels_heure.jpg', caption="Distribution du nombre d'appels par heure", width=1500)
+
+    st.image(r'../Images/Distribution_nb_appels_jour_mois.jpg', caption="Distribution du nombre d'appels par jour et par mois", width=1500)
+
+    st.image(r'../Images/Distribution_nb_appels_an_moti.jpg', caption="Distribution du nombre d'appels par année et par motif", width=1100)
+
+
+
+    st.markdown("<h2 style='text-align: center; color: black;'>Représentations spatiales</h2>", unsafe_allow_html=True)
+
+    #background = Image.open('Images/Carte_Londres.jpg')
+    #col1, col2, col3 = st.columns([0.2, 150, 0.2])
+    #col2.image(background, use_column_width=True)
+
+    st.image(r'..\Images\Carte_Londres.jpg', caption='Carte de Londres avec, en rouge, les casernes les plus sollicitées et en vert les casernes les moins sollicitées', width=1500)
+
+    st.image(r'../Images/Carte_Londres_distances_casernes.jpg', caption="Carte de Londres avec, en rouge, les casernes avec les distances parcourues les plus longues et en vert les casernes les distances parcourues les moins longues", width=1500)
+
+    st.image(r'../Images/Carte_Londres_attendance_time_casernes.jpg', caption="Carte de Londres avec, en rouge, les casernes avec les temps d'attente les plus long et en vert les casernes les moins longs", width=1500)
+
+    
+
 
 
 # Série temporelle
@@ -200,13 +254,13 @@ elif section == "Série temporelle":
     st.markdown(paragraphe1)
 
     st.markdown("<h2 style='text-align: left; color: black;'>Nombre d'appels réceptionnés par les pompiers de Londres</h2>", unsafe_allow_html=True)
-    image_path = r"Images/Nombredappel.jpg"
+    image_path = r"..\Images\Nombredappel.jpg"
     image_1 = Image.open(image_path)
     # Afficher l'image avec Streamlit
     st.image(image_1, caption="Nombre d'appels réceptionnés", width=700)
     #st.image(, caption="", width=700)
 
-    st.image(r'Images/Comparaison.jpg', caption="Comparaison modèle additif et modèle multiplicatif", width=700)
+    st.image(r'..\Images\comparaison.jpg', caption="Comparaison modèle additif et modèle multiplicatif", width=700)
 
     paragraphe2 = '''Cette comparaison de modèle permet de conclure de façon claire que l'évolution du nombre d'appels correspond à un modèle
     multiplicatif. Cette information est extrêment importante à intégrer car cela signifie qu'au fur et à mesure des années, ce nombre
@@ -221,7 +275,7 @@ elif section == "Série temporelle":
     '''
     st.markdown(paragraphe3)
 
-    st.image(r'Images/Prevision.jpg', caption="Prédiction d'évolution des appels", width=700)
+    st.image(r'..\Images\Prevision.jpg', caption="Prédiction d'évolution des appels", width=700)
 
     paragraphe4 = '''Le tracé en pointillé correspond à l'évolution moyenne prédite. La plage grisée correspond à la plage d'erreur (écart-type) potentielle.
     Aini, plus on avance dans le temps de prévision, plus de façon logique la plage d'erreur augmente (liée aux phénomènes d'incertitudes d'évènements)
@@ -413,13 +467,13 @@ elif section == "Machine Learning":
     else:
         st.write("Aucune donnée à afficher.")
 
-    model_DecisionTree_regressor = joblib.load("/models/model_DecisionTree_regressor")
-    model_gb_regressor = joblib.load("/models/model_gb_regressor")
-    model_Grid_CV = joblib.load("/models/model_Grid_CV")
-    model_reg_line = joblib.load("/models/model_reg_line")
-    model_Rf_reg = joblib.load("/models/model_Rf_reg")  # fichier volumineux !!! 6GB
-    model_XGB_reg = joblib.load("/models/model_XGB_reg")
-    model_KNN_reg = joblib.load("/models/model_KNN_reg")
+    model_DecisionTree_regressor = joblib.load("..\models\model_DecisionTree_regressor")
+    model_gb_regressor = joblib.load("..\models\model_gb_regressor")
+    model_Grid_CV = joblib.load("..\models\model_Grid_CV")
+    model_reg_line = joblib.load("..\models\model_reg_line")
+    model_Rf_reg = joblib.load("..\models\model_Rf_reg")  # fichier volumineux !!! 6GB
+    model_XGB_reg = joblib.load("..\models\model_XGB_reg")
+    model_KNN_reg = joblib.load("..\models\model_KNN_reg")
 
 
     y_pred_model_DecisionTree_regressor= model_DecisionTree_regressor.predict(X_test)
@@ -455,7 +509,7 @@ elif section == "Machine Learning":
     st.write(train_model(model_choisi))
     if model_choisi == "Decision Tree":
                 #st.image(image, caption='Arbre de décision', use_column_width=True)
-                image_path = r"Images/Arbre_de_decision.png"
+                image_path = r"..\Images\Arbre_de_decision.png"
                 image = Image.open(image_path)
                 # Afficher l'image avec Streamlit
                 st.image(image, caption='Arbre de décision', use_column_width=True)
@@ -468,8 +522,20 @@ elif section == "Machine Learning":
 
 # Deep Learning
 elif section == "Deep Learning":
-    st.title("Deep Learning")
-    st.write("Application de modèles de deep learning.")
+    #.title("Deep Learning")
+    #st.write("Application de modèles de deep learning.")
+    st.markdown("<h2 style='text-align: center; color: black;'>Modèle de Deep Learning</h2>", unsafe_allow_html=True)
+
+    X_test = np.loadtxt(r"../data/LFB_Test.csv", delimiter=",", dtype=float)
+    y_test = np.loadtxt(r"../data/LFB_Test_y.csv", delimiter=",", dtype=float)
+
+    loaded_model = tf.keras.models.load_model(r"../models/model_2024-04-29", compile = False)
+    y_pred = loaded_model.predict(X_test)
+
+    st.metric(label="MAE DL Test : ", value=str(round(mean_absolute_error(y_test, y_pred),1))+" secondes")
+
+    #st.metric(label="MSE DL Test : ", value=str(round(mean_squared_error(y_test, y_pred),1)))
+
     # Ajoutez ici votre code de deep learning
 
 # Perspectives
