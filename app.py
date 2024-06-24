@@ -184,6 +184,52 @@ elif section == "DataVizualisation":
     st.title("DataVizualisation")
     st.write("Dans cette section, nous allons visualiser les données.")
     # Ajoutez ici votre code de visualisation de données
+    st.markdown("<h1 style='text-align: center; color: blue;'>Datavisualisation</h1>", unsafe_allow_html=True)
+
+    st.markdown("<h2 style='text-align: center; color: black;'>Variable cible</h2>", unsafe_allow_html=True)
+
+    st.image(r"..\Images\Distribution_variable_cible.jpg", caption="Distribution des temps d'attente (variable cible)", width=700)
+
+    st.image(r'../Images/Distribution_gamma_variable_cible.jpg', caption=" La variable cible ne suit pas une distribution Gamma malgré les apparences", width=700)
+
+    st.image(r'../Images/Distribution_variable_cible_hue.jpg', caption="Distribution des temps d'attente par type d'incident (variable cible)", width=700)
+
+
+
+    st.markdown("<h2 style='text-align: center; color: black;'>Types d'interventions</h2>", unsafe_allow_html=True)
+
+    st.image(r'../Images/Boxplot_temps_attente_type_intervention.jpg', caption="Temps d'attente par type d'intervention", width=1400)
+
+    st.image(r'../Images/Mobilisations_Description_Pie.jpg', caption="Description des différents types de mobilisation", width=1000)
+
+    st.image(r'../Images/Mobilisations_Incidents.jpg', caption="Nombre de mobilisations par incidents", width=600)
+
+
+
+    st.markdown("<h2 style='text-align: center; color: black;'>Evolution temporelle</h2>", unsafe_allow_html=True)
+
+    st.image(r'../Images/Nb_mobilisations_mensuelles_diachronique.jpg', caption="Evolution mensuelle du nombre d'appels", width=1300)
+
+    st.image(r'../Images/Distribution_nb_appels_heure.jpg', caption="Distribution du nombre d'appels par heure", width=1500)
+
+    st.image(r'../Images/Distribution_nb_appels_jour_mois.jpg', caption="Distribution du nombre d'appels par jour et par mois", width=1500)
+
+    st.image(r'../Images/Distribution_nb_appels_an_moti.jpg', caption="Distribution du nombre d'appels par année et par motif", width=1100)
+
+
+
+    st.markdown("<h2 style='text-align: center; color: black;'>Représentations spatiales</h2>", unsafe_allow_html=True)
+
+    #background = Image.open('Images/Carte_Londres.jpg')
+    #col1, col2, col3 = st.columns([0.2, 150, 0.2])
+    #col2.image(background, use_column_width=True)
+
+    st.image(r'..\Images\Carte_Londres.jpg', caption='Carte de Londres avec, en rouge, les casernes les plus sollicitées et en vert les casernes les moins sollicitées', width=1500)
+
+    st.image(r'../Images/Carte_Londres_distances_casernes.jpg', caption="Carte de Londres avec, en rouge, les casernes avec les distances parcourues les plus longues et en vert les casernes les distances parcourues les moins longues", width=1500)
+
+    st.image(r'../Images/Carte_Londres_attendance_time_casernes.jpg', caption="Carte de Londres avec, en rouge, les casernes avec les temps d'attente les plus long et en vert les casernes les moins longs", width=1500)
+
 
 
 # Série temporelle
