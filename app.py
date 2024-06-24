@@ -141,7 +141,7 @@ elif section == "Description des datasets":
         st.write("- Clé primaire : IncidentNumber")
         
     if st.checkbox("_Afficher valeurs manquantes de la table **Incidents**_") :
-        st.image("/Images/valeurs_manquantes_df_incidents.jpg", caption="Variables à plus 10% de valeurs manquantes", width=600)
+        st.image("Images/valeurs_manquantes_df_incidents.jpg", caption="Variables à plus 10% de valeurs manquantes", width=600)
 
     st.write("- Un second jeu de données (**Mobilisations**) contient les détails de chaque ressource (camion de pompiers) envoyé sur les lieux d’un incident entre 2015 et 2023.")         
 
